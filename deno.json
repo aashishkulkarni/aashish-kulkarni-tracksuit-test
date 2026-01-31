@@ -16,5 +16,20 @@
     "lib": ["deno.ns", "dom", "dom.iterable", "dom.asynciterable"],
     "jsx": "react-jsx",
     "jsxImportSource": "react"
+  },
+  "test": {
+    "exclude": ["client/**"],
+    "permissions": {
+      "env": [
+        "DENO_DIR",
+        "DENO_SQLITE_PATH",
+        "DENO_SQLITE_LOCAL",
+        "HOME",
+        "USERPROFILE"
+      ],
+      "read": true,
+      "ffi": true,
+      "net": true
+    }
   }
 }

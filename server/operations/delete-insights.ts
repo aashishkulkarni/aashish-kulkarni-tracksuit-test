@@ -5,8 +5,7 @@ import type * as insightsTable from "../tables/insights.ts";
 type Input = HasDBClient & {
   id: number;
 };
-
-export default (input: Input): Insight | undefined => {
+export default (input: Input): void => {
   console.log(`Looking up insight for id=${input.id}`);
 
   const [row] = input.db
@@ -15,11 +14,9 @@ export default (input: Input): Insight | undefined => {
   >`SELECT * FROM insights WHERE id = ${input.id} LIMIT 1`;
 
   if (row) {
-    const result = { ...row, createdAt: new Date(row.createdAt) };
-    console.log("Insight retrieved:", result);
-    return result;
+    input.db.sql`DELETE FROM insights WHERE id = ${input.id}`;
+    console.log("Deleted insight successfully!");
+  } else {
+    console.log("Insight not found, nothing to delete");
   }
-
-  console.log("Insight not found");
-  return;
 };
