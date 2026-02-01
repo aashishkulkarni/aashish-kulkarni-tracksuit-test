@@ -1,6 +1,7 @@
 {
   "name": "@suittracker/client",
   "exports": {},
+  "include": ["src/**/*.ts"],
   "$schema": "https://raw.githubusercontent.com/denoland/deno/refs/heads/v2.1/cli/schemas/config-file.v1.json",
   "tasks": {
     "dev": "deno run -A --env-file=../.env npm:vite",
